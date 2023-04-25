@@ -1,7 +1,8 @@
 {
-  "name": "test",
-  "displayName": "Test",
+  "name": "hecklib",
+  "displayName": "HeckLib",
   "description": "",
+  "publisher": "Heck-Library",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.77.0"
@@ -9,21 +10,16 @@
   "categories": [
     "Other"
   ],
+  "icon": "./src/resources/heckLib_logo.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "test.helloWorld",
-        "title": "Hello World"
-      }
-    ],
     "viewsContainers": {
       "activitybar": [
         {
           "id": "HeckLib",
           "title": "HeckLib",
-          "icon": "./src/resources/heckLib_logo_rounded.svg"
+          "icon": "./src/resources/heckLib_vsc.png"
         }
       ]
     },
@@ -43,7 +39,7 @@
       },
       {
         "view": "HeckLib",
-        "contents": "[Update Hecklib](command:test.Update-HeckLib)",
+        "contents": "Here you can update this shit \n[Update Hecklib](command:test.Update-HeckLib)",
         "when": "myExtension.file == true"
       }
     ]

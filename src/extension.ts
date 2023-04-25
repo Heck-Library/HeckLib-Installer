@@ -34,11 +34,11 @@ export function activate(context: vscode.ExtensionContext) {
 		await vscode.commands.executeCommand('git.clone', repositoryUrl, tempFolderPath);
 		const repoFolderPath = path.join(workspaceFolderPath);
 		tempFolderPath = path.join(tempFolderPath, 'HeckLib');
+		removeFolder(repoFolderPath,["cinema","consts","doc","effect","environment","events","functions","info","map","model","objects"]);
 		await copyFolder(tempFolderPath, repoFolderPath,[".gitignore","package-lock.json","heckExporter.py","package.json","README.md","script.ts","functions.ts"]); // Copy the contents of the temporary folder to the workspace folder
 		await removeFolder(tempFolderPath); // Remove the temporary folder
 		vscode.commands.executeCommand('workbench.action.reloadWindow');
-		vscode.window.showInformationMessage("");
-		vscode.window.showInformationMessage('HeckLib Downloaded');
+		vscode.window.showInformationMessage('HeckLib Updated');
 	});
 	let download = vscode.commands.registerCommand('test.Download-HeckLib',async () => {
 		const repositoryUrl = 'https://github.com/Heck-Library/HeckLib'; // Replace with the URL of the Git repository you want to clone
@@ -55,7 +55,6 @@ export function activate(context: vscode.ExtensionContext) {
 		await copyFolder(tempFolderPath, repoFolderPath , [".gitignore","package-lock.json","heckExporter.py","package.json","README.md"]); // Copy the contents of the temporary folder to the workspace folder
 		await removeFolder(tempFolderPath); // Remove the temporary folder
 		vscode.commands.executeCommand('workbench.action.reloadWindow');
-		vscode.window.showInformationMessage("");
 		vscode.window.showInformationMessage('HeckLib Downloaded');
 	});
 	async function copyFolder(source: string, destination: string, skip?: string[]) {
@@ -81,10 +80,13 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	  }
 	  
-	  async function removeFolder(folderPath: string) {
+	  async function removeFolder(folderPath: string, skip?: string[]) {
 		if (fs.existsSync(folderPath)) {
 		  const files = fs.readdirSync(folderPath);
 		  for (const file of files) {
+			if(skip && !skip.includes(file)){
+				continue; // skip these files
+			}
 			const filePath = path.join(folderPath, file);
 			if (fs.statSync(filePath).isDirectory()) {
 			  await removeFolder(filePath); // Recursively remove subfolders and their contents
@@ -98,13 +100,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('test.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Test!');
-	});
 	context.subscriptions.push(update);
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(download);
 }
 
 // This method is called when your extension is deactivated
