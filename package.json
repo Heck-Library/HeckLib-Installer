@@ -20,28 +20,33 @@
     ],
     "viewsContainers": {
       "activitybar": [
-                {
-                    "id": "my-extension",
-                    "title": "My Extension",
-                    "icon": "resources/icon.svg"
-                }
-            ]
-        },
-        "views": {
-            "my-extension": [
-                {
-                    "id": "my-extension",
-                    "name": "My Tree Data Provider"
-                }
-            ]
-        },
-        "viewsWelcome": [
-          {
-            "view": "my-extension",
-            "contents": "In order to use git features, you can open a folder containing a git repository or clone from a URL.\n[Open Folder](command:vscode.openFolder)\n[Clone Repository](command:git.clone)\nTo learn more about how to use git and source control in VS Code [read our docs](https://aka.ms/vscode-scm).",
-            "when": "myExtension.file == false"
-          }
-        ]
+        {
+          "id": "HeckLib",
+          "title": "HeckLib",
+          "icon": "./src/resources/heckLib_logo_rounded.svg"
+        }
+      ]
+    },
+    "views": {
+      "HeckLib": [
+        {
+          "id": "HeckLib",
+          "name": "Downloader / Updater"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "HeckLib",
+        "contents": "[Download Hecklib](command:test.Download-HeckLib)",
+        "when": "myExtension.file == false"
+      },
+      {
+        "view": "HeckLib",
+        "contents": "[Update Hecklib](command:test.Update-HeckLib)",
+        "when": "myExtension.file == true"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -52,16 +57,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.77.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.77.0",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "@vscode/test-electron": "^2.3.0",
     "eslint": "^8.36.0",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",
-    "typescript": "^4.9.5",
-    "@vscode/test-electron": "^2.3.0"
+    "path": "^0.12.7",
+    "typescript": "^4.9.5"
   }
 }
