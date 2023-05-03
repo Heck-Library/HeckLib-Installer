@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "npm",
+        "type": "shell",
+        "command": "npm i -g ts-node nodemon"  
+      },
+      {
+        "label": "npm local",
+        "type": "shell",
+        "command": "npm i @types/node"
+      }
+    ]
+  }

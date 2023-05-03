@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
+import { exec } from 'child_process';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -54,11 +55,26 @@ export function activate(context: vscode.ExtensionContext) {
 		tempFolderPath = path.join(tempFolderPath, 'HeckLib');
 		await copyFolder(tempFolderPath, repoFolderPath , [".gitignore","package-lock.json","heckExporter.py","package.json","README.md"]); // Copy the contents of the temporary folder to the workspace folder
 		await removeFolder(tempFolderPath); // Remove the temporary folder
-		vscode.commands.executeCommand('workbench.action.reloadWindow');
-		vscode.window.showInformationMessage('HeckLib Downloaded');
+		vscode.commands.executeCommand('workbench.action.reloadWindow').then( async () => {
+			vscode.window.showInformationMessage('HeckLib Downloaded');
+			const task = await vscode.tasks.fetchTasks({ type: 'shell' });
+    		if (task.length > 0) {
+    		    await vscode.tasks.executeTask(task[0]);
+    		}
+		});
+	});
+	let downloadDep = vscode.commands.registerCommand('test.Download-HeckLib-Dependencies',async () => {
+		const terminal = vscode.window.createTerminal();
+		terminal.show();
+		await terminal.sendText('npm install -g ts-node nodemon');
+		await terminal.sendText('npm install @types/node')
+	});
+	let run = vscode.commands.registerCommand('test.Run-HeckLib',async () => {
+		const terminal = vscode.window.createTerminal();
+		terminal.show();
+		await terminal.sendText('nodemon ./script.ts -e ts');
 	});
 	async function copyFolder(source: string, destination: string, skip?: string[]) {
-		console.log(source)
 		if (!fs.existsSync(destination)) {
 		  fs.mkdirSync(destination); // Create the destination folder if it doesn't exist
 		}
@@ -102,6 +118,8 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	context.subscriptions.push(update);
 	context.subscriptions.push(download);
+	context.subscriptions.push(downloadDep);
+	context.subscriptions.push(run);
 }
 
 // This method is called when your extension is deactivated

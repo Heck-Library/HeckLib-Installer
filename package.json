@@ -11,7 +11,9 @@
     "Other"
   ],
   "icon": "./src/resources/heckLib_logo.png",
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:test.Run-HeckLib"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "viewsContainers": {
@@ -34,13 +36,26 @@
     "viewsWelcome": [
       {
         "view": "HeckLib",
-        "contents": "[Download Hecklib](command:test.Download-HeckLib)",
+        "contents": "Click here to download hecklib \n[Download Hecklib](command:test.Download-HeckLib)",
         "when": "myExtension.file == false"
       },
       {
         "view": "HeckLib",
-        "contents": "Here you can update this shit \n[Update Hecklib](command:test.Update-HeckLib)",
+        "contents": "Here you can update to latest's version \n[Update Hecklib](command:test.Update-HeckLib)\n Download Dependencies to use \n[Download Dependencies](command:test.Download-HeckLib-Dependencies)",
         "when": "myExtension.file == true"
+      }
+    ],
+    "commands":[
+      {
+        "command": "test.Run-HeckLib",
+        "title": "Runs"
+      }
+    ],
+    "keybindings":[
+      {
+      "command": "test.Run-HeckLib",
+      "key": "ctrl+1",
+      "mac": "cmd+shift+1"
       }
     ]
   },
