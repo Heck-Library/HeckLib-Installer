@@ -37,7 +37,6 @@ export function activate(context: vscode.ExtensionContext) {
 		removeFolder(repoFolderPath,["cinema","consts","doc","effect","environment","events","functions","info","map","model","objects"]);
 		await copyFolder(tempFolderPath, repoFolderPath,[".gitignore","package-lock.json","heckExporter.py","package.json","README.md","script.ts","functions.ts"]); // Copy the contents of the temporary folder to the workspace folder
 		await removeFolder(tempFolderPath); // Remove the temporary folder
-		vscode.commands.executeCommand('workbench.action.reloadWindow');
 		vscode.window.showInformationMessage('HeckLib Updated');
 	});
 	let download = vscode.commands.registerCommand('test.Download-HeckLib',async () => {
@@ -54,9 +53,8 @@ export function activate(context: vscode.ExtensionContext) {
 		tempFolderPath = path.join(tempFolderPath, 'HeckLib');
 		await copyFolder(tempFolderPath, repoFolderPath , [".gitignore","package-lock.json","heckExporter.py","package.json","README.md"]); // Copy the contents of the temporary folder to the workspace folder
 		await removeFolder(tempFolderPath); // Remove the temporary folder
-		vscode.commands.executeCommand('workbench.action.reloadWindow').then( async () => {
-			vscode.window.showInformationMessage('HeckLib Downloaded');
-		});
+		vscode.commands.executeCommand('setContext', 'myExtension.file', true);
+		vscode.window.showInformationMessage('HeckLib Downloaded');
 	});
 	let downloadDep = vscode.commands.registerCommand('test.Download-HeckLib-Dependencies',async () => {
 		const terminal = vscode.window.createTerminal();
@@ -65,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 		await terminal.sendText('npm install @types/node')
 	});
 	let run = vscode.commands.registerCommand('test.Run-HeckLib',async () => {
-		const terminal = vscode.window.createTerminal();
+		const terminal = vscode.window.terminals.find(t => t.name === 'HeckLib') || vscode.window.createTerminal('HeckLib');
 		terminal.show();
 		await terminal.sendText('nodemon ./script.ts -e ts');
 	});
