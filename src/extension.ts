@@ -12,7 +12,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "test" is now active!');
 	vscode.workspace.findFiles("script.ts",'',1).then((file)	=>{
 		if(file.length === 0){
 			vscode.commands.executeCommand('setContext', 'myExtension.file', false);
@@ -57,16 +56,12 @@ export function activate(context: vscode.ExtensionContext) {
 		await removeFolder(tempFolderPath); // Remove the temporary folder
 		vscode.commands.executeCommand('workbench.action.reloadWindow').then( async () => {
 			vscode.window.showInformationMessage('HeckLib Downloaded');
-			const task = await vscode.tasks.fetchTasks({ type: 'shell' });
-    		if (task.length > 0) {
-    		    await vscode.tasks.executeTask(task[0]);
-    		}
 		});
 	});
 	let downloadDep = vscode.commands.registerCommand('test.Download-HeckLib-Dependencies',async () => {
 		const terminal = vscode.window.createTerminal();
 		terminal.show();
-		await terminal.sendText('npm install -g ts-node nodemon');
+		await terminal.sendText('npm install -g ts-node nodemon swc');
 		await terminal.sendText('npm install @types/node')
 	});
 	let run = vscode.commands.registerCommand('test.Run-HeckLib',async () => {
