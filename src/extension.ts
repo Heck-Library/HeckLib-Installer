@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 	let downloadDep = vscode.commands.registerCommand('test.Download-HeckLib-Dependencies',async () => {
 		const terminal = vscode.window.createTerminal();
 		terminal.show();
-		await terminal.sendText('npm install -g ts-node nodemon swc');
+		await terminal.sendText('npm install -g ts-node nodemon @swc/core');
 		await terminal.sendText('npm install @types/node')
 	});
 	let run = vscode.commands.registerCommand('test.Run-HeckLib',async () => {
