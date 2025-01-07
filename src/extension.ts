@@ -12,14 +12,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	vscode.workspace.findFiles("script.ts",'',1).then((file)	=>{
+	vscode.workspace.findFiles("script.ts",'',1).then((file: any)	=>{
 		if(file.length === 0){
 			vscode.commands.executeCommand('setContext', 'myExtension.file', false);
-			console.error(`File  doesn't exist in `);
     	} else {
       	// The file exists
 		  vscode.commands.executeCommand('setContext', 'myExtension.file', true);
-      	console.log(`File exists in `);
     	}
 	});
 	let update = vscode.commands.registerCommand('test.Update-HeckLib',async () => {
@@ -59,13 +57,13 @@ export function activate(context: vscode.ExtensionContext) {
 	let downloadDep = vscode.commands.registerCommand('test.Download-HeckLib-Dependencies',async () => {
 		const terminal = vscode.window.createTerminal();
 		terminal.show();
-		await terminal.sendText('npm install -g ts-node nodemon @swc/core');
-		await terminal.sendText('npm install @types/node')
+		await terminal.sendText('npx npm install -g ts-node nodemon @swc/core');
+		await terminal.sendText('npx npm install @types/node')
 	});
 	let run = vscode.commands.registerCommand('test.Run-HeckLib',async () => {
-		const terminal = vscode.window.terminals.find(t => t.name === 'HeckLib') || vscode.window.createTerminal('HeckLib');
+		const terminal = vscode.window.terminals.find((t: any) => t.name === 'HeckLib') || vscode.window.createTerminal('HeckLib');
 		terminal.show();
-		await terminal.sendText('nodemon ./script.ts -e ts');
+		await terminal.sendText('npx nodemon ./script.ts -e ts');
 	});
 	async function copyFolder(source: string, destination: string, skip?: string[]) {
 		if (!fs.existsSync(destination)) {
