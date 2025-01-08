@@ -2,7 +2,11 @@
   "name": "hecklib",
   "displayName": "HeckLib",
   "description": "",
-  "publisher": "Heck-Library",
+  "publisher": "Jevk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Heck-Library/HeckLib-Installer"
+  },
   "version": "1.1.2",
   "engines": {
     "vscode": "^1.77.0"
