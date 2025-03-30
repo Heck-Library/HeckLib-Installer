@@ -1,0 +1,556 @@
+{
+    // PointDefinitions
+    "PointDefinition": {
+        "scope": "javascript",
+        "prefix": ["pointDefinition", "pointDef", "point", "def"],
+        "body": [
+            "pointDefinitions.set(\"${1:name}\", [",
+            "    $0",
+            "])"
+        ],
+        "description": "Creates the structure for setting a new PointDefinition."
+    },
+    // Materials
+    "Material": {
+        "scope": "javascript",
+        "prefix": "material",
+        "body": [
+            "materials.set(\"${1:name}\", new Material({",
+            "    Color: [${2:r}, ${3:g}, ${4:b}],",
+            "    Shader: Material.SHADER.$0",
+            "}));"
+        ],
+        "description": "Creates the structure for setting a new Material."
+    },
+
+    //#region CustomEvents
+    "AnimateComponent": {
+        "scope": "javascript",
+        "prefix": ["animateComponent", "animateComp", "animComponent", "animComp"],
+        "body": [
+            "customEvents.push(new AnimateComponent(${1:time}, {",
+            "    Track: \"${2}\"",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new AnimateComponent to your map."
+    },
+    "AnimateTrack": {
+        "scope": "javascript",
+        "prefix": ["animateTrack", "animTrack", "trackAnimation"],
+        "body": [
+            "customEvents.push(new AnimateTrack(${1:time}, {",
+            "    Track: \"${2}\"",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new AnimateTrack to your map."
+    },
+    "AssignObjectPrefab": {
+        "scope": "javascript",
+        "prefix": ["assignObjectPrefab", "objectPrefab", "assignPrefab"],
+        "body": [
+            "customEvents.push(new AssignObjectPrefab(${1:time}, {",
+            "    LoadMode: \"${2:Additive|Single}\",",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new AssignObjectPrefab to your map."
+    },
+    "AssignPathAnimation": {
+        "scope": "javascript",
+        "prefix": ["assignPathAnimation", "pathAnimation", "pathAnim"],
+        "body": [
+            "customEvents.push(new AssignPathAnimation(${1:time}, {",
+            "    Track: \"${2}\"",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new AssignPathAnimation to your map."
+    },
+    "AssignPlayerToTrack": {
+        "scope": "javascript",
+        "prefix": ["assignPlayerToTrack", "playerTrack", "assignPlayerTrack"],
+        "body": [
+            "customEvents.push(new AssignPlayerToTrack(${1:time}, {",
+            "    Track: \"$2\"",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new AssignPlayerToTrack to your map."
+    },
+    "AssignTrackParent": {
+        "scope": "javascript",
+        "prefix": ["assignTrackParent", "trackParent"],
+        "body": [
+            "customEvents.push(new AssignTrackParent(${1:time}, {",
+            "    ParentTrack: \"$2\"",
+            "    ChildrenTracks: [$3],",
+            "}));",
+            "$0"
+        ],
+        "description": "Creates the structure for pushing a new AssignTrackParent to your map."
+    },
+    "Blit": {
+        "scope": "javascript",
+        "prefix": ["blit", "applyPostProcessing", "postProcessing", "applyPostProcess", "postProcess"],
+        "body": [
+            "customEvents.push(new Blit(${1:time}, {",
+            "    Asset: $2,",
+            "    Duration: $3,",
+            "    Properties: [{",
+            "        $0",
+            "    }]",
+            "}));",
+        ],
+        "description": "Creates the structure for pushing a new Blit to your map."
+    },
+    "CreateCamera": {
+        "scope": "javascript",
+        "prefix": ["createCamera", "camera"],
+        "body": [
+            "customEvents.push(new CreateCamera(${1:time}, {",
+            "    ID: \"$2\"",
+            "}));",
+            "$0"
+        ],
+        "description": "Creates the structure for pushing a new CreateCamera to your map."
+    },
+    "CreateScreenTexture": {
+        "scope": "javascript",
+        "prefix": ["createScreenTexture", "screenTexture", "screenTex", "createTex", "createTexture"],
+        "body": [
+            "customEvents.push(new CreateScreenTexture(${1:time}, {",
+            "    ID: \"$2\"",
+            "}));",
+            "$0"
+        ],
+        "description": "Creates the structure for pushing a new CreateScreenTexture to your map."
+    },
+    "DestroyObject": {
+        "scope": "javascript",
+        "prefix": ["destroyObject", "destroy", "destroyPrefab", "destroyTexture", "destroyScreenTexture"],
+        "body": [
+            "customEvents.push(new DestroyObject(${1:time}, {",
+            "    ID: \"$2\"",
+            "}));",
+            "$0"
+        ],
+        "description": "Creates the structure for pushing a new DestroyObject to your map."
+    },
+    "InstantiatePrefab": {
+        "scope": "javascript",
+        "prefix": ["instantiatePrefab", "instantiate", "instantiateObject", "createPrefab", "newPrefab", "prefab"],
+        "body": [
+            "customEvents.push(new InstantiatePrefab(${1:time}, {",
+            "    Asset: $2,",
+            "    $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new InstantiatePrefab to your map."
+    },
+    "SetAnimatorProperty": {
+        "scope": "javascript",
+        "prefix": ["setAnimatorProperty", "animatorProperty", "setAnimProperty", "animProperty"],
+        "body": [
+            "customEvents.push(new SetAnimatorProperty(${1:time}, {",
+            "    ID: \"$2\",",
+            "    Properties: [{",
+            "        $0",
+            "    }]",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new SetAnimatorProperty to your map."
+    },
+    "SetCameraProperty": {
+        "scope": "javascript",
+        "prefix": ["setCameraProperty", "cameraProperty", "setCamProperty", "camProperty"],
+        "body": [
+            "customEvents.push(new SetCameraProperty(${1:time}, {",
+            "    ID: \"$2\",",
+            "    Properties: [{",
+            "        $0",
+            "    }]",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new SetCameraProperty to your map."
+    },
+    "SetGlobalProperty": {
+        "scope": "javascript",
+        "prefix": ["setGlobalProperty", "globalProperty", "setGlobalProp", "globalProp"],
+        "body": [
+            "customEvents.push(new SetGlobalProperty(${1:time}, {",
+            "    Properties: [{",
+            "        $0",
+            "    }]",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new SetGlobalProperty to your map."
+    },
+    "SetMaterialProperty": {
+        "scope": "javascript",
+        "prefix": ["setMaterialProperty", "materialProperty", "setMatProperty", "matProperty"],
+        "body": [
+            "customEvents.push(new SetMaterialProperty(${1:time}, {",
+            "    Asset: \"$2\",",
+            "    Properties: [{",
+            "        $0",
+            "    }]",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new SetMaterialProperty to your map."
+    },
+    "SetRenderingSettings": {
+        "scope": "javascript",
+        "prefix": ["setRenderingSettings", "renderingSettings", "setRenderSettings", "renderSettings"],
+        "body": [
+            "customEvents.push(new SetRenderingSettings(${1:time}, {",
+            "        $0",
+            "}));"
+        ],
+        "description": "Creates the structure for pushing a new SetRenderingSettings to your map."
+    },
+    //#endregion
+
+    //#region Objects
+    "ColorNote": {
+        "scope": "javascript",
+        "prefix": ["note", "colorNote"],
+        "body": [
+            "notes.push(new Note({",
+            "    Beat: $1",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "FakeColorNote": {
+        "scope": "javascript",
+        "prefix": ["fakeNote", "fakeColorNote"],
+        "body": [
+            "fakeNotes.push(new Note({",
+            "    Beat: $1",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "BombNote": {
+        "scope": "javascript",
+        "prefix": ["bomb", "bombNote"],
+        "body": [
+            "bombs.push(new Bomb({",
+            "    Beat: $1",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "FakeBombNote": {
+        "scope": "javascript",
+        "prefix": ["fakeBomb", "fakeBombNote"],
+        "body": [
+            "fakeBombs.push(new Bomb({",
+            "    Beat: $1",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "Obstacle": {
+        "scope": "javascript",
+        "prefix": ["obstacle", "wall"],
+        "body": [
+            "obstacles.push(new Obstacle({",
+            "    Beat: $1",
+            "    Duration: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "FakeObstacle": {
+        "scope": "javascript",
+        "prefix": ["fakeObstacle", "fakeWall"],
+        "body": [
+            "fakeObstacles.push(new Obstacle({",
+            "    Beat: $1",
+            "    Duration: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "Arc": {
+        "scope": "javascript",
+        "prefix": ["arc", "slider"],
+        "body": [
+            "arcs.push(new Slider({",
+            "    Beat: $1",
+            "    TailBeat: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "FakeArc": {
+        "scope": "javascript",
+        "prefix": ["fakeArc", "fakeSlider"],
+        "body": [
+            "fakeArcs.push(new Slider({",
+            "    Beat: $1",
+            "    TailBeat: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "Chain": {
+        "scope": "javascript",
+        "prefix": ["chain", "burstSlider"],
+        "body": [
+            "chains.push(new BurstSlider({",
+            "    Beat: $1",
+            "    TailBeat: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    "FakeChain": {
+        "scope": "javascript",
+        "prefix": ["fakeChain", "fakeBurstSlider"],
+        "body": [
+            "fakeChains.push(new BurstSlider({",
+            "    Beat: $1",
+            "    TailBeat: $2",
+            "    $0",
+            "}, {",
+            "    // CustomData",
+            "}));"
+        ]
+    },
+    //#endregion
+
+    //#region Selectors
+    "SelectNotes": {
+        "scope": "javascript",
+        "prefix": ["selectNotes", "selNotes", "filterNotes"],
+        "body": [
+            "notes.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachNote": {
+        "scope": "javascript",
+        "prefix": ["forEachNote", "forNote"],
+        "body": [
+            "notes.select({",
+            "    ${1:filters}",
+            "}).forEach(note => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectFakeNotes": {
+        "scope": "javascript",
+        "prefix": ["selectFakeNotes", "selFakeNotes", "filterFakeNotes"],
+        "body": [
+            "fakeNotes.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachFakeNote": {
+        "scope": "javascript",
+        "prefix": ["forEachFakeNote", "forFakeNote"],
+        "body": [
+            "fakeNotes.select({",
+            "    ${1:filters}",
+            "}).forEach(note => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectBombs": {
+        "scope": "javascript",
+        "prefix": ["selectBombs", "selBombs", "filterBombs"],
+        "body": [
+            "bombs.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachBomb": {
+        "scope": "javascript",
+        "prefix": ["forEachBomb", "forBomb"],
+        "body": [
+            "bombs.select({",
+            "    ${1:filters}",
+            "}).forEach(bomb => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectFakeBombs": {
+        "scope": "javascript",
+        "prefix": ["selectFakeBombs", "selFakeBombs", "filterFakeBombs"],
+        "body": [
+            "fakeBombs.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachFakeBomb": {
+        "scope": "javascript",
+        "prefix": ["forEachFakeBomb", "forFakeBomb"],
+        "body": [
+            "fakeBombs.select({",
+            "    ${1:filters}",
+            "}).forEach(bomb => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectObstacles": {
+        "scope": "javascript",
+        "prefix": ["selectObstacles", "selObstacles", "filterObstacles", "selectWalls", "selWalls", "filterWalls"],
+        "body": [
+            "obstacles.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachObstacle": {
+        "scope": "javascript",
+        "prefix": ["forEachObstacle", "forObstacle", "forEachWall", "forWall"],
+        "body": [
+            "obstacles.select({",
+            "    ${1:filters}",
+            "}).forEach(obstacle => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectFakeObstacles": {
+        "scope": "javascript",
+        "prefix": ["selectFakeObstacles", "selFakeObstacles", "filterFakeObstacles", "selectFakeWalls", "selFakeWalls", "filterFakeWalls"],
+        "body": [
+            "fakeObstacles.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachFakeObstacle": {
+        "scope": "javascript",
+        "prefix": ["forEachFakeObstacle", "forFakeObstacle", "forEachFakeWall", "forFakeWall"],
+        "body": [
+            "fakeObstacles.select({",
+            "    ${1:filters}",
+            "}).forEach(obstacle => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectArcs": {
+        "scope": "javascript",
+        "prefix": ["selectArcs", "selArcs", "filterArcs", "selectSliders", "selSliders", "filterSliders"],
+        "body": [
+            "arcs.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachArc": {
+        "scope": "javascript",
+        "prefix": ["forEachArc", "forArc", "forEachSlider", "forSlider"],
+        "body": [
+            "arcs.select({",
+            "    ${1:filters}",
+            "}).forEach(arc => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectFakeArcs": {
+        "scope": "javascript",
+        "prefix": ["selectFakeArcs", "selFakeArcs", "filterFakeArcs", "selectFakeSliders", "selFakeSliders", "filterFakeSliders"],
+        "body": [
+            "fakeArcs.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachFakeArc": {
+        "scope": "javascript",
+        "prefix": ["forEachFakeArc", "forFakeArc", "forEachFakeSlider", "forFakeSlider"],
+        "body": [
+            "fakeArcs.select({",
+            "    ${1:filters}",
+            "}).forEach(arc => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectChains": {
+        "scope": "javascript",
+        "prefix": ["selectChains", "selChains", "filterChains", "selectBurstSliders", "selBurstSliders", "filterBurstSliders"],
+        "body": [
+            "chains.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachChain": {
+        "scope": "javascript",
+        "prefix": ["forEachChain", "forChain", "forEachBurstSlider", "forBurstSlider"],
+        "body": [
+            "chains.select({",
+            "    ${1:filters}",
+            "}).forEach(chain => {",
+            "    $0",
+            "});"
+        ]
+    },
+    "SelectFakeChains": {
+        "scope": "javascript",
+        "prefix": ["selectFakeChains", "selFakeChains", "filterFakeChains", "selectFakeBurstSliders", "selFakeBurstSliders", "filterFakeBurstSliders"],
+        "body": [
+            "fakeChains.select({",
+            "    ${1:filters}",
+            "});",
+            "$0"
+        ]
+    },
+    "ForEachFakeChain": {
+        "scope": "javascript",
+        "prefix": ["forEachFakeChain", "forFakeChain", "forEachFakeBurstSlider", "forFakeBurstSlider"],
+        "body": [
+            "fakeChains.select({",
+            "    ${1:filters}",
+            "}).forEach(chain => {",
+            "    $0",
+            "});"
+        ]
+    },
+    //#endregion
+}

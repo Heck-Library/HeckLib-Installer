@@ -1,94 +1,26 @@
 {
-  "name": "hecklib",
-  "displayName": "HeckLib",
-  "description": "",
-  "publisher": "Jevk",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Heck-Library/HeckLib-Installer"
-  },
-  "version": "1.1.2",
-  "engines": {
-    "vscode": "^1.77.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "icon": "./src/resources/heckLib_logo.png",
-  "activationEvents": [
-    "onCommand:test.Run-HeckLib"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "HeckLib",
-          "title": "HeckLib",
-          "icon": "./src/resources/heckLib_vsc.png"
-        }
-      ]
+    "name": "hecklib",
+    "displayName": "HeckLib",
+    "publisher": "Jevk",
+    "description": "An extension that adds code snippets for the HeckLib TypeScript library.",
+    "version": "2.0.1",
+    "engines": {
+        "vscode": "^1.98.0"
     },
-    "views": {
-      "HeckLib": [
-        {
-          "id": "HeckLib",
-          "name": "Downloader / Updater"
-        }
-      ]
-    },
-    "viewsWelcome": [
-      {
-        "view": "HeckLib",
-        "contents": "Click here to download hecklib \n[Download Hecklib](command:test.Download-HeckLib)",
-        "when": "myExtension.file == false"
-      },
-      {
-        "view": "HeckLib",
-        "contents": "Here you can update to latest's version \n[Update Hecklib](command:test.Update-HeckLib)\n Download Dependencies to use \n[Download Dependencies](command:test.Download-HeckLib-Dependencies)",
-        "when": "myExtension.file == true"
-      }
+    "categories": [
+        "Snippets"
     ],
-    "commands": [
-      {
-        "command": "test.Run-HeckLib",
-        "title": "Runs"
-      }
-    ],
-    "keybindings": [
-      {
-        "command": "test.Run-HeckLib",
-        "key": "ctrl+1",
-        "mac": "cmd+shift+1"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.77.0",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
-    "@vscode/test-electron": "^2.3.0",
-    "eslint": "^8.36.0",
-    "fs": "^0.0.1-security",
-    "fs-extra": "^11.1.1",
-    "glob": "^8.1.0",
-    "mocha": "^10.2.0",
-    "path": "^0.12.7",
-    "typescript": "^4.9.5"
-  },
-  "dependencies": {
-    "@vscode/vsce": "^3.2.1",
-    "vsce": "^2.15.0"
-  }
+    "icon": "heckLib_logo.png",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/js-snippets.code-snippets"
+            },
+            {
+                "language": "typescript",
+                "path": "./snippets/ts-snippets.code-snippets"
+            }
+        ]
+    }
 }
