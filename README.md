@@ -1,4 +1,4 @@
-# HeckLib
+# HeckLib VSC Extension
 
 ## Features
 
