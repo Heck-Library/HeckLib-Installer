@@ -347,7 +347,8 @@
         "prefix": ["selectNotes", "selNotes", "filterNotes"],
         "body": [
             "notes.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -357,7 +358,8 @@
         "prefix": ["forEachNote", "forNote"],
         "body": [
             "notes.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(note => {",
             "    $0",
             "});"
@@ -368,7 +370,8 @@
         "prefix": ["selectFakeNotes", "selFakeNotes", "filterFakeNotes"],
         "body": [
             "fakeNotes.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -378,7 +381,8 @@
         "prefix": ["forEachFakeNote", "forFakeNote"],
         "body": [
             "fakeNotes.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(note => {",
             "    $0",
             "});"
@@ -389,7 +393,8 @@
         "prefix": ["selectBombs", "selBombs", "filterBombs"],
         "body": [
             "bombs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -399,7 +404,8 @@
         "prefix": ["forEachBomb", "forBomb"],
         "body": [
             "bombs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(bomb => {",
             "    $0",
             "});"
@@ -410,7 +416,8 @@
         "prefix": ["selectFakeBombs", "selFakeBombs", "filterFakeBombs"],
         "body": [
             "fakeBombs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -420,7 +427,8 @@
         "prefix": ["forEachFakeBomb", "forFakeBomb"],
         "body": [
             "fakeBombs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(bomb => {",
             "    $0",
             "});"
@@ -431,7 +439,8 @@
         "prefix": ["selectObstacles", "selObstacles", "filterObstacles", "selectWalls", "selWalls", "filterWalls"],
         "body": [
             "obstacles.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -441,7 +450,8 @@
         "prefix": ["forEachObstacle", "forObstacle", "forEachWall", "forWall"],
         "body": [
             "obstacles.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(obstacle => {",
             "    $0",
             "});"
@@ -452,7 +462,8 @@
         "prefix": ["selectFakeObstacles", "selFakeObstacles", "filterFakeObstacles", "selectFakeWalls", "selFakeWalls", "filterFakeWalls"],
         "body": [
             "fakeObstacles.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -462,7 +473,8 @@
         "prefix": ["forEachFakeObstacle", "forFakeObstacle", "forEachFakeWall", "forFakeWall"],
         "body": [
             "fakeObstacles.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(obstacle => {",
             "    $0",
             "});"
@@ -473,7 +485,8 @@
         "prefix": ["selectArcs", "selArcs", "filterArcs", "selectSliders", "selSliders", "filterSliders"],
         "body": [
             "arcs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -483,7 +496,8 @@
         "prefix": ["forEachArc", "forArc", "forEachSlider", "forSlider"],
         "body": [
             "arcs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(arc => {",
             "    $0",
             "});"
@@ -494,7 +508,8 @@
         "prefix": ["selectFakeArcs", "selFakeArcs", "filterFakeArcs", "selectFakeSliders", "selFakeSliders", "filterFakeSliders"],
         "body": [
             "fakeArcs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -504,7 +519,8 @@
         "prefix": ["forEachFakeArc", "forFakeArc", "forEachFakeSlider", "forFakeSlider"],
         "body": [
             "fakeArcs.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(arc => {",
             "    $0",
             "});"
@@ -515,7 +531,8 @@
         "prefix": ["selectChains", "selChains", "filterChains", "selectBurstSliders", "selBurstSliders", "filterBurstSliders"],
         "body": [
             "chains.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -525,7 +542,8 @@
         "prefix": ["forEachChain", "forChain", "forEachBurstSlider", "forBurstSlider"],
         "body": [
             "chains.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(chain => {",
             "    $0",
             "});"
@@ -536,7 +554,8 @@
         "prefix": ["selectFakeChains", "selFakeChains", "filterFakeChains", "selectFakeBurstSliders", "selFakeBurstSliders", "filterFakeBurstSliders"],
         "body": [
             "fakeChains.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "});",
             "$0"
         ]
@@ -546,7 +565,8 @@
         "prefix": ["forEachFakeChain", "forFakeChain", "forEachFakeBurstSlider", "forFakeBurstSlider"],
         "body": [
             "fakeChains.select({",
-            "    ${1:filters}",
+            "    StartBeat: $1,",
+            "    EndBeat: $2",
             "}).forEach(chain => {",
             "    $0",
             "});"
